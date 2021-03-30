@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { CardList } from '../src/components/card-list/card-list'
-import { Input } from '@material-ui/core';
+import { SearchBox } from '../src/components/search-box/search-box'
 import './App.css'
+
 class App extends Component {
   constructor() {
     super();
@@ -11,12 +12,23 @@ class App extends Component {
       searchField: ''
     }
 
+
+    this.handleChange = this.handleChange.bind(this)
+
   }
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
-      .then(users => this.setState({ monsters: users }));
+      .then(users => this.setState({ monsters: users }))
+      .catch(erro => {
+        console.log(erro)
+      })
   }
+
+  handleChange(e) {
+    this.setState({ searchField: e.target.value })
+  }
+
 
   render() {
     const { monsters, searchField } = this.state;
@@ -26,9 +38,14 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Input onChange={(e) => this.setState({ searchField: e.target.value })}
-          className="input-text" variant="filled" type="search" color="primary" label="Monsters..." placeholder="monters..."></Input>
-        <CardList monsters={filteredMonsters}></CardList>
+        <h1>Monster Cards</h1>
+        <SearchBox
+          placeholder='search monsters'
+          handleChange={this.handleChange}>
+        </SearchBox>
+        <CardList
+          monsters={filteredMonsters}>
+        </CardList>
 
       </div>
     )

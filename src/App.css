@@ -7,3 +7,10 @@
 .input-text {
   margin-bottom: 10px;
 }
+
+h1 {
+  font-family: 'Bigelow Rules', cursive;
+  font-size: 70px;
+  margin: 0;
+  color: rgb(15, 45, 75);
+}

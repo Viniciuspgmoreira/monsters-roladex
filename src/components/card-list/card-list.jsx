@@ -1,7 +1,6 @@
 import React from 'react'
 import './card-list.css'
 import { Card } from '../card/card.component'
-import InputLabel from '@material-ui/core/InputLabel'
 
 export const CardList = (props) => {
   return (
